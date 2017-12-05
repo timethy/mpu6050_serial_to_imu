@@ -125,9 +125,9 @@ void setup() {
     // join I2C bus (I2Cdev library doesn't do this automatically)
     #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
         Wire.begin();
-        Wire.setClock(400000); // 400kHz I2C clock. Comment this line if having compilation difficulties
+        Wire.setClock(100000); // 400kHz I2C clock. Comment this line if having compilation difficulties
     #elif I2CDEV_IMPLEMENTATION == I2CDEV_BUILTIN_FASTWIRE
-        Fastwire::setup(400, true);
+        Fastwire::setup(100, true);
     #endif
 
     // initialize serial communication
@@ -154,7 +154,7 @@ void setup() {
     // load and configure the DMP
     Serial.println(F("Initializing DMP..."));
     devStatus = mpu.dmpInitialize();
-
+  
     // supply your own gyro offsets here, scaled for min sensitivity
     mpu.setXAccelOffset(-1169);
     mpu.setYAccelOffset(744);
